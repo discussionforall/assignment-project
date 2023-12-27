@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import withAuth from "@/utils/withAuth";
 import { Button, Img, Text } from "../../components";
 import { useRouter, useParams } from "next/navigation";
 
@@ -17,8 +18,6 @@ const ImageUploader = ({ onImageUpload, src, alt }) => {
       reader.onload = () => {
         const imageData = reader.result;
         setImage(imageData);
-
-        // Pass the image data to the parent component
         onImageUpload(imageData);
       };
 
@@ -195,4 +194,4 @@ const EditPage = () => {
   );
 };
 
-export default EditPage;
+export default withAuth(EditPage);

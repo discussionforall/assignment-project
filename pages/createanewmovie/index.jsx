@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Button, Img, Text } from "../../components";
+import withAuth from "@/utils/withAuth";
+import { Img, Text } from "../../components";
 import { useRouter } from "next/navigation";
 
 const ImageUploader = ({ onImageUpload }) => {
@@ -17,8 +18,6 @@ const ImageUploader = ({ onImageUpload }) => {
       reader.onload = () => {
         const imageData = reader.result;
         setImage(imageData);
-
-        // Pass the image data to the parent component
         onImageUpload(imageData);
       };
 
@@ -155,4 +154,4 @@ const CreateANewMoviePage = () => {
   );
 };
 
-export default CreateANewMoviePage;
+export default withAuth(CreateANewMoviePage);

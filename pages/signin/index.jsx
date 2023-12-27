@@ -1,26 +1,24 @@
 import React, { useState } from "react";
-import { Button, Img, Text } from "../../components";
+import { Img, Text } from "../../components";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const SigninPage = () => {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = () => {
-    if (formData.email === "admin@gmail.com" && formData.password === "admin") {
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("/api/login", { username, password });
+      const { token } = response.data;
+      localStorage.setItem("token", token);
       router.push("/emptystate");
-    } else {
-      alert("Invalid credentials. Please try again.");
+    } catch (error) {
+      console.error("Login failed", error);
     }
   };
+
   return (
     <>
       <div className="bg-homebg flex pb flex-col font-montserrat sm:gap-10 md:gap-10 gap-[109px] items-center justify-end mx-auto h-lvh w-full ">
@@ -33,22 +31,18 @@ const SigninPage = () => {
           </Text>
           <div className="flex flex-col items-center justify-start w-full pb-[109px]">
             <input
-              name="email"
-              placeholder="Email"
+              type="text"
+              placeholder="Username"
               className="pt-[11px] pr-0 pb-2.5 pl-4 mb-6 placeholder-white rounded-[10px] min-h-[45px] bg-customColor  text-white text-left font-montserrat text-sm font-normal leading-6 focus:outline-none w-full "
               wrapClassName="w-full"
-              type="email"
-              onChange={handleChange}
-              value={formData.email}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <input
-              name="password"
+              type="password"
               placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
               className="pt-[11px] pr-0 pb-2.5 pl-4 mb-6 placeholder-white rounded-[10px] min-h-[45px] bg-customColor  text-white text-left font-montserrat text-sm font-normal leading-6 focus:outline-none w-full "
               wrapClassName="mt-6 w-full"
-              type="password"
-              onChange={handleChange}
-              value={formData.password}
             />
 
             <div>
@@ -64,7 +58,7 @@ const SigninPage = () => {
               className="w-full rounded-[10px] pt-[15px] pb-[15px]  pr-[126px] pl-[126px] bg-primaryColor text-white cursor-pointer font-bold min-w-[300px] mt-[27px] text-base text-center"
               type="button"
               shape="round"
-              onClick={handleSubmit}
+              onClick={handleLogin}
             >
               Login
             </button>

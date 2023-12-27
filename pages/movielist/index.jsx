@@ -1,13 +1,41 @@
-'use client'
+"use client";
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Img, Text } from "../../components";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+const Logout = () => {
+  const router = useRouter()
+  
+  const handleLogout = async () => {
+    try {
+      await axios.post('/api/logout');
+      localStorage.removeItem('token');
+      router.push("/signin")
+    } catch (error) {
+      console.error('Logout failed', error);
+    }
+  };
+
+  return (
+      <button className="text-white text-center font-montserrat text-lg font-bold leading-6" size="txtMontserratBold16" onClick={handleLogout}>Logout</button>
+  );
+};
+
 
 const MovielistPage = () => {
+  const router = useRouter()
   const [movies, setMovies] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -20,7 +48,6 @@ const MovielistPage = () => {
 
     fetchMovies();
   }, []);
-
 
   return (
     <>
@@ -35,30 +62,39 @@ const MovielistPage = () => {
                 >
                   My movies
                 </Text>
-                <Img
+                {isLoggedIn ?
+                (<Img
                   className="h-8 w-8"
                   src="images/img_addcircleoutlineblack24dp.svg"
                   alt="addcircleoutlin"
-                />
+                  onClick={() => router.push("/createanewmovie")}
+                />) :
+                ("")
+              }
+                
               </div>
               <div className="flex sm:flex-1 flex-row gap-3  items-center justify-end  w-[9%] sm:w-full">
-                <a
-                  href="javascript:"
-                  className="text-white text-center font-montserrat text-lg font-bold leading-6"
-                >
-                  <Text size="txtMontserratBold16">Logout</Text>
-                </a>
-                <Img
-                  className="h-8 w-8"
-                  src="images/img_logoutblack24dp.svg"
-                  alt="logoutblack24dp"
-                />
+                {isLoggedIn ? (
+                 
+                  <Logout />
+                  
+                 
+                ) : (
+                  <button
+                    className="text-white mr-[15px] text-center font-montserrat text-lg font-bold leading-6"
+                    size="txtMontserratBold16"
+                    onClick={() => router.push("/signin")}
+                  >
+                    Login
+                  </button>
+                )}
+                
               </div>
             </div>
             <div className="md:gap-5 lg:gap-6 grid sm:grid-cols-1 md:grid-cols-4 grid-cols-4 justify-center min-h-[auto] mt-[115px] w-full">
               {movies.map((movie) => (
                 <React.Fragment key={movie._id}>
-                   <Link
+                  <Link
                     className="pt-[8px] pb-[16px] pl-[8px] pr-[8px] rounded-lg bg-counterColor backdrop-filter backdrop-blur-md inline-flex flex-col items-start gap-4"
                     href={`/edit/${movie._id}`}
                   >
