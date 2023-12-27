@@ -132,34 +132,30 @@ const EditPage = () => {
 
   return (
     <>
-      <div className="bg-homebg flex flex-col font-montserrat items-center justify-end mx-auto lg:pt-[117px] sm:px-6	md:px-6	 lg:px-0 sm:pt-[80px] md:pt-[80px] w-full">
-        <div className="flex flex-col md:gap-10 gap-[89px] justify-start w-full">
-          <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between max-w-[962px] mx-auto md:px-5 w-full">
-            <div className="flex md:flex-1 flex-col md:gap-10 gap-[119px] items-center justify-start w-[52%] md:w-full">
-              <Text
-                className="text-5xl sm:text-[38px] md:text-[44px] text-center text-white-A700"
-                size="txtMontserratSemiBold48"
-              >
-                Edit
-              </Text>
-              <div className="bg-cover bg-no-repeat flex flex-col h-[504px] items-center justify-center p-[166px] md:px-10 sm:px-5 w-[97%] md:w-full">
-                <div className="flex flex-col gap-3 items-center justify-start my-[58px] w-full">
-                  <ImageUploader
+    <div className="bg-homebg flex flex-col font-montserrat items-center justify-end mx-auto lg:pt-[120px] sm:px-6	md:px-6	 lg:px-[120px] sm:pt-[80px] md:pt-[80px] w-full">
+      <div className="w-full">
+        <Text
+          className="lg:pl-[130px] sm:text-[32px] md:text-[32px] md:font-semibold sm:font-semibold text-white sm:text-center md:text-center lg:text-left font-montserrat lg:text-4xl font-semibold leading-14"
+          size="txtMontserratSemiBold48"
+        >
+         Edit
+        </Text>
+        <div className="grid lg:grid-rows-3 lg:grid-flow-col gap-4 lg:my-[120px]">
+          <div className=" lg:row-span-3 lg:order-1 md:order-2 sm:order-2 mx-auto">
+          <ImageUploader
                     onImageUpload={handleImageUpload}
                     src={movie.image}
                     alt={movie.title}
                   />
-                </div>
-              </div>
-            </div>
-            <div className="flex md:flex-1 flex-col items-start justify-start md:mt-0 mt-[178px] w-[38%] md:w-full">
-              <input
+          </div>
+          <div className="lg:col-span-2 lg:order-2 md:order-1 sm:order-1 md:items-center md:mt-[80px] sm:mt-[80px] lg:mt-[0px]  sm:items-center lg:items-baseline md:items-center	 flex flex-col">
+          <input
                 type="text"
                 name="title"
                 placeholder="Title"
                 value={movie.title}
                 onChange={handleChange}
-                className="p-0 placeholder:text-white-A700 text-center text-sm w-full"
+                className=" pt-[11px] pr-0 pb-2.5 pl-4 mb-6 placeholder-white rounded-[10px] lg:min-h-[45px] bg-customColor  text-white text-left font-montserrat text-sm font-normal leading-6 focus:outline-none sm:max-w-[380px] md:max-w-[380px] lg:w-[362px]"
                 wrapClassName="w-full"
               />
               <input
@@ -167,33 +163,35 @@ const EditPage = () => {
                 placeholder="Publishing year"
                 value={movie.publishYear}
                 onChange={handleChange}
-                className="p-0 placeholder:text-white-A700 text-center text-sm w-full"
+                className=" pt-[11px] pr-0 pb-2.5 pl-4 mb-6 placeholder-white rounded-[10px] min-h-[45px] bg-customColor  text-white text-left font-montserrat text-sm font-normal leading-6 focus:outline-none lg:w-[216px] sm:max-w-[380px] md:max-w-[380px"
                 wrapClassName="mt-6 w-3/5"
               />
-              <div className="flex flex-row gap-4 items-center justify-between mt-16 w-full">
-                <Button
-                  className="cursor-pointer font-bold min-w-[167px] text-base text-center"
-                  shape="round"
-                  color="white_A700"
-                  variant="outline"
-                  onClick={() => router.push("/movielist")}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  className="cursor-pointer font-bold min-w-[179px] text-base text-center"
-                  shape="round"
-                  onClick={handleUpdateClick}
-                >
-                  Update
-                </Button>
-              </div>
-            </div>
           </div>
-          <Img className="w-full" src="images/img_vectors.svg" alt="vectors" />
+          <div className="lg:row-span-2 lg:col-span-2 lg:order-3 md:order-3 sm:order-3 md:block  sm:block md:gap-4	sm:gap-4	">
+            <button
+              className="md:pl-[40px] md:pr-[40px] sm:pr-[40px] sm:pl-[40px] lg:mr-[24px]  md:pt-[16px] sm:pt-[16px] md:pb-[16px] sm:pb-[16px] md:w-full sm:w-full border border-solid border-white p-4 lg:w-[179px] rounded-[10px] pt-[16px] pb-[16px]  pr-[55px] pl-[55px] bg-transparent text-white cursor-pointer font-bold  text-base text-center"
+              shape="round"
+              color="white_A700"
+              variant="outline"
+              onClick={() => router.push("/movielist")}
+            >
+              Cancel
+            </button>
+            <button
+              className=" md:pl-[40px] md:pr-[40px] sm:pr-[40px] sm:pl-[40px]  md:pt-[16px] sm:pt-[16px] md:pb-[16px] sm:pb-[16px] md:w-full sm:w-full lg:w-[167px] rounded-[10px] pt-[16px] pb-[16px]  pr-[55px] pl-[55px] bg-primaryColor text-white cursor-pointer font-bold   text-base text-center"
+              shape="round"
+              onClick={handleUpdateClick}
+            >
+              Update
+            </button>
+          </div>
         </div>
       </div>
-    </>
+
+    
+    </div>
+    <Img className="bg-homebg w-full" src="images/img_vectors.svg" alt="vectors" />
+  </>
   );
 };
 
