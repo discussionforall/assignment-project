@@ -31,30 +31,22 @@ const ImageUploader = ({ onImageUpload, src, alt }) => {
 
   return (
     <div
+      className="md:w-[400px] sm:w-[275px]  md:h-[372px] sm:h-[372px] lg:w-[473px] lg:h-[504px] border-2 border-dashed border-gray-300 rounded-8 flex items-center justify-center cursor-pointer "
       onDrop={handleDrop}
       onDragOver={handleDragOver}
-      style={{
-        width: "300px",
-        height: "300px",
-        border: "2px dashed #ccc",
-        borderRadius: "8px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-      }}
+      style={{}}
     >
       {src ? (
-       <img
-       src={src}
-       alt="Uploaded"
-       style={{
-         width: "100%",
-         height: "100%",
-         objectFit: "cover",
-         borderRadius: "8px",
-       }}
-     />
+        <img
+          src={src}
+          alt="Uploaded"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "8px",
+          }}
+        />
       ) : (
         <>
           {image ? (
@@ -69,7 +61,18 @@ const ImageUploader = ({ onImageUpload, src, alt }) => {
               }}
             />
           ) : (
-            <p>Drag & drop an image here</p>
+            <>
+              <div className="flex items-center flex-col">
+                <Img
+                  className="rotate-90 lg:h-8 lg:w-8 sm:w-6	sm:h-6 md:w-6	md:h-6"
+                  src="images/img_logoutblack24dp.svg"
+                  alt="logoutblack24dp"
+                />
+                <p className="text-white text-center font-montserrat text-sm font-normal leading-6">
+                  Drag & drop an image here
+                </p>
+              </div>
+            </>
           )}
         </>
       )}
@@ -129,7 +132,7 @@ const EditPage = () => {
 
   return (
     <>
-      <div className="bg-teal-900 flex flex-col font-montserrat items-center justify-end mx-auto pt-[117px] w-full">
+      <div className="bg-homebg flex flex-col font-montserrat items-center justify-end mx-auto lg:pt-[117px] sm:px-6	md:px-6	 lg:px-0 sm:pt-[80px] md:pt-[80px] w-full">
         <div className="flex flex-col md:gap-10 gap-[89px] justify-start w-full">
           <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between max-w-[962px] mx-auto md:px-5 w-full">
             <div className="flex md:flex-1 flex-col md:gap-10 gap-[119px] items-center justify-start w-[52%] md:w-full">

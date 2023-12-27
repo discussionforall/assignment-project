@@ -55,7 +55,7 @@ const SigninPage = () => {
               </label>
             </div>
             <button
-              className="w-full rounded-[10px] pt-[15px] pb-[15px]  pr-[126px] pl-[126px] bg-primaryColor text-white cursor-pointer font-bold min-w-[300px] mt-[27px] text-base text-center"
+              className="w-full rounded-[10px] pt-[15px] pb-[15px]  lg:pr-[126px] lg:pl-[126px] bg-primaryColor text-white cursor-pointer font-bold min-w-[300px] mt-[27px] text-base text-center"
               type="button"
               shape="round"
               onClick={handleLogin}

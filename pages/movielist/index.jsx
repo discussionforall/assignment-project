@@ -7,26 +7,31 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const Logout = () => {
-  const router = useRouter()
-  
+  const router = useRouter();
+
   const handleLogout = async () => {
     try {
-      await axios.post('/api/logout');
-      localStorage.removeItem('token');
-      router.push("/signin")
+      await axios.post("/api/logout");
+      localStorage.removeItem("token");
+      router.push("/signin");
     } catch (error) {
-      console.error('Logout failed', error);
+      console.error("Logout failed", error);
     }
   };
 
   return (
-      <button className="text-white text-center font-montserrat text-lg font-bold leading-6" size="txtMontserratBold16" onClick={handleLogout}>Logout</button>
+    <button
+      className="text-white text-center font-montserrat text-lg font-bold leading-6"
+      size="txtMontserratBold16"
+      onClick={handleLogout}
+    >
+      Logout
+    </button>
   );
 };
 
-
 const MovielistPage = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [movies, setMovies] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -51,10 +56,10 @@ const MovielistPage = () => {
 
   return (
     <>
-      <div className="h-lvh bg-homebg flex flex-col font-montserrat items-center justify-start mx-auto pt-[121px] w-full">
-        <div className=" bg-homebg flex flex-col md:gap-10 gap-[109px] items-center justify-start w-full">
+      <div className="h-lvh bg-homebg flex flex-col font-montserrat items-center justify-start mx-auto sm:pt-[80px] md:pt-[80px] lg:pt-[121px] w-full">
+        <div className="lg:px-0 md:px-6	 sm:px-6	 bg-homebg flex flex-col md:gap-10 gap-[109px] items-center justify-start w-full">
           <div className="flex flex-col items-center justify-start max-w-[1200px] mx-auto md:px-5 w-full">
-            <div className="flex lg:flex-row  sm:flex-col md:gap-10 items-center  justify-between w-full">
+            <div className="flex lg:flex-row  md:gap-10 items-center  justify-between w-full">
               <div className="flex sm:flex-1 flex-row gap-3 items-center  w-[26%] sm:w-full">
                 <Text
                   className=" sm:text-3xl md:text-[44px] text-center font-montserrat text-4xl font-semibold leading-14 text-white"
@@ -62,36 +67,32 @@ const MovielistPage = () => {
                 >
                   My movies
                 </Text>
-                {isLoggedIn ?
-                (<Img
-                  className="h-8 w-8"
-                  src="images/img_addcircleoutlineblack24dp.svg"
-                  alt="addcircleoutlin"
-                  onClick={() => router.push("/createanewmovie")}
-                />) :
-                ("")
-              }
-                
+                {isLoggedIn ? (
+                  <Img
+                    className="h-8 w-8 sm:w-6	sm:h-6 md:w-6	md:h-6"
+                    src="images/img_addcircleoutlineblack24dp.svg"
+                    alt="addcircleoutlin"
+                    onClick={() => router.push("/createanewmovie")}
+                  />
+                ) : (
+                  ""
+                )}
               </div>
               <div className="flex sm:flex-1 flex-row gap-3  items-center justify-end  w-[9%] sm:w-full">
                 {isLoggedIn ? (
-                 
                   <Logout />
-                  
-                 
                 ) : (
                   <button
-                    className="text-white mr-[15px] text-center font-montserrat text-lg font-bold leading-6"
+                    className="text-white text-center font-montserrat text-lg font-bold leading-6 lg:block md:hidden sm:hidden"
                     size="txtMontserratBold16"
                     onClick={() => router.push("/signin")}
                   >
                     Login
                   </button>
                 )}
-                
               </div>
             </div>
-            <div className="md:gap-5 lg:gap-6 grid sm:grid-cols-1 md:grid-cols-4 grid-cols-4 justify-center min-h-[auto] mt-[115px] w-full">
+            <div className="min-h-80 sm:pb-[94px] md:pb-[94px] lg:pb-[0] md:gap-x-5	sm:gap-x-5 md:gap-y-10 sm:gap-y-10 lg:gap-6 grid md:grid-cols-2 sm:grid-cols-2  lg:grid-cols-4 justify-center  sm:pt-[80px] md:pt-[80px] lg:mt-[115px] w-full">
               {movies.map((movie) => (
                 <React.Fragment key={movie._id}>
                   <Link
@@ -109,7 +110,7 @@ const MovielistPage = () => {
                 </React.Fragment>
               ))}
             </div>
-            <div className="mt-[124px] gap-[8px] flex flex-row items-center justify-center w-[16%] md:w-full">
+            <div className=" sm:hidden md:hidden mt-[124px] gap-[8px] lg:flex flex-row items-center justify-center w-[16%] md:w-full">
               <Text
                 className="mr-[10px] text-white text-center font-montserrat text-lg font-bold leading-6"
                 size="txtMontserratBold16"
@@ -139,7 +140,7 @@ const MovielistPage = () => {
           </div>
         </div>
         <Img
-          className="bg-homebg sm:h-[111px] lg:w-full "
+          className="bg-homebg h-full lg:w-full "
           src="images/img_vectors.svg"
           alt="vectors"
         />

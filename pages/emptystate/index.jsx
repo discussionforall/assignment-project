@@ -20,7 +20,7 @@ const EmptystatePage = () => {
             Your movie list is empty
           </Text>
           <button
-            className=" rounded-[10px] pt-[16px] pb-[16px]  pr-[28px] pl-[28px] bg-primaryColor text-white cursor-pointer font-bold min-w-[202px] sm:w-full text-base text-center"
+            className=" rounded-[10px] pt-[16px] pb-[16px]  pr-[28px] pl-[28px] bg-primaryColor text-white cursor-pointer font-bold md:w-auto lg:w-auto min-w-[202px] sm:w-[97%] text-base text-center"
             shape="round"
             onClick={addMovie}
           >
