@@ -67,7 +67,7 @@ const MovielistPage = () => {
                 </Text>
                 {isLoggedIn ? (
                   <Img
-                    className="h-8 w-8 sm:w-6	sm:h-6 md:w-6	md:h-6"
+                    className="cursor-pointer h-8 w-8 sm:w-6	sm:h-6 md:w-6	md:h-6"
                     src="images/img_addcircleoutlineblack24dp.svg"
                     alt="addcircleoutlin"
                     onClick={() => router.push("/createanewmovie")}
@@ -120,13 +120,6 @@ const MovielistPage = () => {
                 size="xs"
               >
                 1
-              </Button>
-              <Button
-                className="pt-[4px] pl-[12px] pb-[4px] pr-[12px] w-[32px] h-[32px] flex-shrink-0 rounded-md bg-counterColor text-white text-center font-montserrat text-base font-bold leading-6"
-                color="blue_gray_900"
-                size="xs"
-              >
-                2
               </Button>
               <Text
                 className="ml-[10px] text-white text-center font-montserrat text-lg font-bold leading-6"

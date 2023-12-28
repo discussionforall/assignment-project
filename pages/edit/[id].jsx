@@ -189,7 +189,7 @@ const EditPage = () => {
       </div>
       <Img
         className="bg-homebg w-full"
-        src="images/img_vectors.svg"
+        src="../images/img_vectors.svg"
         alt="vectors"
       />
     </>
