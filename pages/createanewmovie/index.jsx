@@ -36,7 +36,7 @@ const ImageUploader = ({ onImageUpload }) => {
       className="md:w-[400px] sm:w-[275px]  md:h-[372px] sm:h-[372px] lg:w-[473px] lg:h-[504px] border-2 border-dashed border-gray-300 rounded-8 flex items-center justify-center cursor-pointer "
     >
       {image ? (
-        <img
+        <Img
           src={image}
           alt="Uploaded"
           style={{
@@ -146,10 +146,12 @@ const CreateANewMoviePage = () => {
             </div>
           </div>
         </div>
-
-      
       </div>
-      <Img className="bg-homebg w-full" src="images/img_vectors.svg" alt="vectors" />
+      <Img
+        className="bg-homebg w-full"
+        src="images/img_vectors.svg"
+        alt="vectors"
+      />
     </>
   );
 };

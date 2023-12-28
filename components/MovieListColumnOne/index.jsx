@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Img, Text } from "../../components";
 
 const MovieListColumnOne = (props) => {

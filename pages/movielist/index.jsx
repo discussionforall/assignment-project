@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Img, Text } from "../../components";
@@ -99,7 +97,7 @@ const MovielistPage = () => {
                     className="pt-[8px] pb-[16px] pl-[8px] pr-[8px] rounded-lg bg-counterColor backdrop-filter backdrop-blur-md inline-flex flex-col items-start gap-4"
                     href={`/edit/${movie._id}`}
                   >
-                    <img src={movie.image} alt={movie.title} />
+                    <Img src={movie.image} alt={movie.title} />
                     <h2 className="text-white font-montserrat text-lg font-medium leading-8">
                       {movie.title}
                     </h2>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const Img = ({
@@ -7,8 +8,10 @@ const Img = ({
   ...restProps
 }) => {
   return (
-    <img
+    <Image
       className={className}
+      width={500}
+      height={500}
       src={src}
       alt={alt}
       {...restProps}
