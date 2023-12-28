@@ -13,7 +13,7 @@ const SigninPage = () => {
       const response = await axios.post("/api/login", { username, password });
       const { token } = response.data;
       localStorage.setItem("token", token);
-      router.push("/emptystate");
+      router.push("/movielist");
     } catch (error) {
       console.error("Login failed", error);
     }
