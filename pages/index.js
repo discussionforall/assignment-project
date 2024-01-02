@@ -146,7 +146,7 @@ const Home = ({ movies }) => {
 
 export const getServerSideProps = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/api/movie/movielist");
+    const response = await axios.get("https://movielist-live.vercel.app/api/movie/movielist");
     const movies = response.data.data;
 // console.log(movies,"movies");
     return {
