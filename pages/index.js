@@ -30,7 +30,6 @@ const Logout = () => {
 
 const Home = ({ movies }) => {
   const router = useRouter();
-  // const [movies, setMovies] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -39,18 +38,6 @@ const Home = ({ movies }) => {
       setIsLoggedIn(true);
     }
   }, []);
-  // useEffect(() => {
-  //   const fetchMovies = async () => {
-  //     try {
-  //       const response = await axios.get("/api/movie/movielist");
-  //       setMovies(response.data.data);
-  //     } catch (error) {
-  //       console.error("Error fetching movies", error);
-  //     }
-  //   };
-
-  //   fetchMovies();
-  // }, []);
 
   return (
     <>
@@ -91,26 +78,26 @@ const Home = ({ movies }) => {
               </div>
             </div>
             <div className="min-h-80 sm:pb-[94px] md:pb-[94px] lg:pb-[0] md:gap-x-5	sm:gap-x-5 md:gap-y-10 sm:gap-y-10 lg:gap-6 grid md:grid-cols-2 sm:grid-cols-2  lg:grid-cols-4 justify-center  sm:pt-[80px] md:pt-[80px] lg:mt-[115px] w-full">
-            {movies && movies.length > 0 ? (
-            movies.map((movie) => (
-              <React.Fragment key={movie._id}>
-                <Link
-                  className="pt-[8px] pb-[16px] pl-[8px] pr-[8px] rounded-lg bg-counterColor backdrop-filter backdrop-blur-md inline-flex flex-col items-start gap-4"
-                  href={`/edit/${movie._id}`}
-                >
-                  <Img src={movie.image} alt={movie.title} />
-                  <h2 className="text-white font-montserrat text-lg font-medium leading-8">
-                    {movie.title}
-                  </h2>
-                  <p className="mt-[-8px] text-white font-montserrat text-sm font-normal leading-6">
-                    {movie.publishYear}
-                  </p>
-                </Link>
-              </React.Fragment>
-            ))
-          ) : (
-            <p>No movies available</p>
-          )}
+              {movies && movies.length > 0 ? (
+                movies.map((movie) => (
+                  <React.Fragment key={movie._id}>
+                    <Link
+                      className="pt-[8px] pb-[16px] pl-[8px] pr-[8px] rounded-lg bg-counterColor backdrop-filter backdrop-blur-md inline-flex flex-col items-start gap-4"
+                      href={`/edit/${movie._id}`}
+                    >
+                      <Img src={movie.image} alt={movie.title} />
+                      <h2 className="text-white font-montserrat text-lg font-medium leading-8">
+                        {movie.title}
+                      </h2>
+                      <p className="mt-[-8px] text-white font-montserrat text-sm font-normal leading-6">
+                        {movie.publishYear}
+                      </p>
+                    </Link>
+                  </React.Fragment>
+                ))
+              ) : (
+                <p>No movies available</p>
+              )}
             </div>
             <div className=" sm:hidden md:hidden mt-[124px] gap-[8px] lg:flex flex-row items-center justify-center w-[16%] md:w-full">
               <Text
@@ -146,9 +133,10 @@ const Home = ({ movies }) => {
 
 export const getServerSideProps = async () => {
   try {
-    const response = await axios.get("https://movielist-live.vercel.app/api/movie/movielist");
+    const response = await axios.get(
+      "https://movielist-live.vercel.app/api/movie/movielist"
+    );
     const movies = response.data.data;
-// console.log(movies,"movies");
     return {
       props: {
         movies,
@@ -164,7 +152,5 @@ export const getServerSideProps = async () => {
     };
   }
 };
-
-
 
 export default Home;
