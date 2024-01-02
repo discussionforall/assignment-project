@@ -131,11 +131,18 @@ const Home = ({ movies }) => {
   );
 };
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ req }) => {
   try {
-    const response = await axios.get(
-      "https://movielist-live.vercel.app/api/movie/movielist"
-    );
+    const host = req.headers.host;
+    console.log("host", host)
+    let apiUrl
+    if(host == 'localhost:3000'){
+      apiUrl = `http://${host}`; // for localhost
+    }else {
+      apiUrl = `https://${host}`; //for live
+    }
+    const response = await axios.get(`${apiUrl}/api/movie/movielist`);
+    console.log(response,"response");
     const movies = response.data.data;
     return {
       props: {
