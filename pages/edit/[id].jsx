@@ -123,7 +123,7 @@ const EditPage = () => {
 
       console.log("Movie updated:", response.data.data);
 
-      router.push("/movielist");
+      router.push("/");
     } catch (error) {
       console.error("Error updating movie", error);
     }

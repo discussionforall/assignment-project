@@ -87,7 +87,7 @@ const CreateANewMoviePage = () => {
       setMovies((prev) => [...prev, data.data]);
       setMovie({ title: "", publishYear: "", image: "" });
       console.log("Movie data created:", data.data);
-      router.push("/movielist");
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
