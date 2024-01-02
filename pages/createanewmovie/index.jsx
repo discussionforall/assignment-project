@@ -132,7 +132,7 @@ const CreateANewMoviePage = () => {
                 shape="round"
                 color="white_A700"
                 variant="outline"
-                onClick={() => router.push("/movielist")}
+                onClick={() => router.push("/")}
               >
                 Cancel
               </button>
